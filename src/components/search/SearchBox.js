@@ -2,21 +2,52 @@
 import React, {Component, useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import {bindActionCreators} from "redux";
+import * as filterCountryActions from "../../redux/actions/filterCountryActions";
+import {connect} from "react-redux";
+import {queryCache} from "react-query";
 
- const SearchBox = () => {
+class SearchBox extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {searchTerm: ""};
 
-    return (
-        <Autocomplete
-            id="combo-box"
-            options={countryNames}
-            getOptionLabel={(option) => option.title}
-            style={{ width: 400 }}
-            renderInput={(params) => <TextField {...params} label="Search Country" variant="outlined" />}
-        />
-    );
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            searchTerm: e.target.value
+        });
+        this.props.actions.filterCountry(queryCache.getQueryData(["", { id: this.props.countries.name.id }]));
+
+        if(this.searchTerm){
+            this.props.actions.filterCountry({
+                data: queryCache.getQueryData().data.filter((countries) =>
+                    countries.name.toLowerCase().startsWith(this.searchTerm.toLocaleLowerCase())
+                ),
+
+            });
+        }
+    };
+
+    render() {
+
+        return (
+            <Autocomplete
+                id="combo-box" className="searchBox"
+                options={countryNames}
+                onChange={this.handleChange}
+                getOptionLabel={(option) => option.title}
+                style={{width: 500}}
+                renderInput={(params) => <TextField {...params} label="Search Country" variant="outlined"/>}
+            />
+        );
+
+    }
+
 }
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+
 const countryNames = [
     {title: 'Afghanistan'},
     {title: 'Åland Islands'},
@@ -272,6 +303,20 @@ const countryNames = [
 
 ];
 
+function mapStateToProps(state) {
+    return {
+        countries: state.listCountryReducer
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: {
+            filterCountry: bindActionCreators(filterCountryActions.filterCountry, dispatch),
+
+        }
+    }
+}
 
 
-export default SearchBox;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
