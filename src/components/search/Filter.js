@@ -4,6 +4,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import DropdownItem from "reactstrap";
+import Dropdown from "reactstrap";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -17,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
 
 const regions = ["None", "Africa", "Asia", "America", "Europe", "Australia"];
 
-function Filter(getCountryReducer) {
-    const classes = useStyles();
+function Filter() {
+    let formControl="formControl";
+    const classes = useStyles(formControl);
     const [continent, setContinent] = useState(regions[0]);
     const onChange = (e) => {
         setContinent(e.target.value);
@@ -35,7 +38,7 @@ function Filter(getCountryReducer) {
 
     return (
         <div>
-            <FormControl variant="outlined" className={classes.formControl}>
+            <FormControl variant="outlined" className={classes}>
                 <InputLabel id="demo-simple-select-outlined-label">Filter Continent</InputLabel>
                 <Select
                     labelId="demo-simple-select-outlined-label"
@@ -52,6 +55,7 @@ function Filter(getCountryReducer) {
                 </Select>
             </FormControl>
             <h1>Selected: {continent}</h1>
+
         </div>
     );
 }

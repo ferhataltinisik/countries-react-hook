@@ -1,10 +1,12 @@
 import {combineReducers} from "redux";
 import listCountryReducer from "./listCountryReducer"
-import changeCountryReducer from "./changeCountryReducer"
+import countryReducer from "./countryReducer"
+import searchCountryReducer from "./searchCountryReducer"
 
 const rootReducer = combineReducers({
-    changeCountryReducer:changeCountryReducer,
-    listCountryReducer: listCountryReducer
+    listCountryReducer:listCountryReducer,
+    countryReducer: countryReducer,
+    searchCountryReducer: searchCountryReducer
 })
 
 

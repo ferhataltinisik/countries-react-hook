@@ -3,7 +3,7 @@ import initialState from "./initialState";
 
 function searchCountryReducer(state= initialState.currentCountry, action){
     switch (action.type){
-        case actionTypes.CHANGE_COUNTRY:
+        case actionTypes.GET_COUNTRY_BY_NAME_SUCCESS:
             return action.payload
         default:
             return state;

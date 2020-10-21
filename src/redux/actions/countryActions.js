@@ -1,30 +1,17 @@
 import * as actionTypes from "./actionTypes"
 
-export function changeCountry(country) {
-    return {type: actionTypes.CHANGE_COUNTRY, payload: country}
+export function getCountryByNameSuccess(country) {
+    return {type: actionTypes.GET_COUNTRY_BY_NAME_SUCCESS, payload: country}
 }
 
-export function getCountriesSuccess(countries) {
-    return {
-        type: actionTypes.GET_COUNTRIES_SUCCESS, payload: countries
-    }
-}
 
-export function getCountries(region) {
+export function getCountryByName(country) {
     return function (dispatch) {
-        let url = "https://restcountries.eu/rest/v2/"
-        if(region=="all"){
-            url += region;
-        }else{
-            url += "region/"+region;
-        }
+        let url = "https://restcountries.eu/rest/v2/name/"
+            url +=country+"?fullText=true"
         return fetch(url)
             .then(response => response.json())
-            .then(countries => dispatch(getCountriesSuccess(countries)))
+            .then(country => dispatch(getCountryByNameSuccess(country)))
     }
 }
 
-
-
-// https://restcountries.eu/rest/v2/region/europe
-// https://restcountries.eu/rest/v2/all

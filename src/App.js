@@ -2,22 +2,24 @@ import React from 'react';
 
 import './App.css';
 import Navi from "./components/navi/Navi";
-import CountriesGrid from "./components/countries/CountryListClass";
+import Details from "./components/countries/Details";
+import {Route, Switch} from "react-router-dom";
+import Dashboard from "./components/countries/Dashboard";
+import Container from "@material-ui/core/Container";
 
-import Search from "./components/search/Search";
-
-import CountryListFunction from "./components/countries/CountryList";
-import CountryListClass from "./components/countries/CountryListClass";
-import CountryList from "./components/countries/CountryList";
 
 function App() {
     return (
-        <div className="App">
+        <div>
             <Navi/>
-            <Search/>
-            <CountryList/>
-
+            <Container>
+                <Switch>
+                    <Route path="/" exact component={Dashboard}/>
+                    <Route path="/country-details/:countryName" exact component={Details}/>
+                </Switch>
+            </Container>
         </div>
+
     );
 }
 

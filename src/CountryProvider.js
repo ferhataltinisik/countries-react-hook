@@ -1,53 +1,38 @@
-import React, { createContext, useState, useContext } from "react";
-import data from './data/data.json';
+import React, {createContext, useState, useContext, useEffect} from "react";
 
-const JobsContext = createContext();
 
-export const useJobs = () => useContext(JobsContext);
+export const CountryContext = React.createContext();
 
-export default function CountryProvider ({ children }) {
 
-    const [jobs, setJobs] = useState(data);
+export const useCountries = () => useContext(CountryContext);
 
-    const [filters, setFilters ] = useState([]);
 
-    const addFilter = (filter) => {
-        if  ( filters.includes(filter) ) return;
-        setFilters([...filters, filter])
-    }
+ const CountryProvider = ({ children }) => {
 
-    const removeFilter = (filter) => {
-        setFilters(filters.filter((f) => f !== filter ));
-    }
+     const [countries, setCountry] = useState([]);
+     const [test, setTest] = useState(["test deneme Alo Melo"]);
 
-    const clearFilters = () => {
-        setFilters([]);
-    }
-
-    const filterFunction = ({role, level, tools, languages}) => {
-        if ( filters.length === 0 ){
-            return true;
-        }
-
-        const tags = [role, level];
-
-        if (tools ){
-            tags.push(...tools);
-        }
-
-        if (languages ) {
-            tags.push(...languages);
-        }
-
-        return filters.every(filter => tags.includes(filter));
-
-    }
-
-    const filteredJobs = jobs.filter(filterFunction);
+     const getCountries = (region) => {
+         return function (dispatch) {
+             let url = "https://restcountries.eu/rest/v2/"
+             if(region=="all"){
+                 url += region;
+             }else{
+                 url += "region/"+region;
+             }
+             return fetch(url)
+                 .then(response => response.json())
+                 .then(countries => dispatch(setCountry(countries)))
+         }
+     }
 
     return (
-        <JobsContext.Provider value={{ addFilter, removeFilter, clearFilters, filters, filteredJobs }} >
+        <CountryContext.Provider value={{ test, getCountries }} >
             {children}
-        </JobsContext.Provider>
+        </CountryContext.Provider>
     );
+
 }
+
+export default CountryProvider;
+

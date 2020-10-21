@@ -1,6 +1,6 @@
 html {
   font-size: 10px;
-  background-color: #212E37;
+
 }
 
 
@@ -38,14 +38,16 @@ code {
   font-size: 2.9rem;
 }
 
-.search{
+/*.search{*/
+/*  padding-top: 10.5rem;*/
+/*  padding-bottom: 1rem;*/
+/*}*/
+
+.dashboard{
   padding-top: 10.5rem;
   padding-bottom: 1rem;
 }
 
-.searchBox{
-margin-left: 50rem;
-}
 .searchRow{
 
 }
@@ -61,7 +63,31 @@ margin-left: 50rem;
   float: left;
   position: center;
 }
+
 .test{
   float: left;
+  margin: 5px;
+}
 
+
+.formControl{
+ width: 14rem;
+
+}
+
+.country-details{
+  padding-top: 10.5rem;
+}
+
+
+.media-details{
+  width: 400px;
+  height: 250px;
+}
+
+
+
+.country-details-text{
+  width: 70rem;
+  height: 250px;
 }

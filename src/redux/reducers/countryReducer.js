@@ -1,9 +1,10 @@
 import * as actionTypes from "../actions/actionTypes"
 import initialState from "./initialState";
 
-function changeCountryReducer(state= initialState.currentCountry, action){
+
+function countryReducer(state= initialState.currentCountry, action){
     switch (action.type){
-        case actionTypes.CHANGE_COUNTRY:
+        case actionTypes.GET_COUNTRY_BY_NAME_SUCCESS:
             return action.payload
         default:
             return state;
@@ -11,4 +12,4 @@ function changeCountryReducer(state= initialState.currentCountry, action){
 
 }
 
-export default changeCountryReducer;
+export default countryReducer;
