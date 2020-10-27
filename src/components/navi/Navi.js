@@ -1,25 +1,31 @@
-import React, {Component} from 'react';
+import React, {useContext} from 'react';
+import {countryContext} from "../../context/countryContext";
+import Button from "@material-ui/core/Button";
 
-class Navi extends Component {
-    render() {
-        return (
-            <div className="text-lg-center">
+const Navi = () => {
 
-                <nav id="nav-bar" className="navbar">
-                    <div id="logo-box" >
-                        <a href="/#" className= "logo">
-                            Search Countries
-                        </a>
-                    </div>
-                    <span>
-                        <a href="/#">
-                        <i className="fas fa-sun"></i>
-                        </a>
-                    </span>
-                </nav>
-            </div>
-        );
+    const {theme, setTheme} = useContext(countryContext);
+
+    const themeToggler = () => {
+        theme === 'light' ? setTheme('dark') : setTheme('light')
     }
+    return (
+        <div className="text-lg-center">
+            <nav id="nav-bar" className="navbar">
+                <div id="logo-box">
+                  <h1>Search Countries</h1>
+                </div>
+                <div >
+                    <Button
+                        onClick={themeToggler}
+                            variant={theme === 'light' ? "outlined" : "contained"}
+                            color={theme === 'light' ? "primary" : "dark"}>
+                        {theme === 'light' ? "Switch to Dark" : "Switch to Light"}
+                    </Button>
+                </div>
+            </nav>
+        </div>
+    );
 }
 
 export default Navi;

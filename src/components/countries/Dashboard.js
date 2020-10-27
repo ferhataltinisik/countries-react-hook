@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Search from "../search/Search";
-import CountryListClass from "./CountryListClass";
+import CountryList from "./CountryList";
 
-class Dashboard extends Component {
-    render() {
-        return (
-            <div className="dashboard">
-                <Search/>
-                <CountryListClass/>
-            </div>
-        );
-    }
+
+const Dashboard = () => {
+
+    return (
+        <div className="dashboard">
+            <Search/>
+            <CountryList/>
+        </div>
+    )
 }
 
 export default Dashboard;

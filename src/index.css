@@ -23,8 +23,6 @@ code {
 #nav-bar {
   width: 100%;
   font-family: Montserrat;
-  background-color: #212E37;
-  color: #fff;
   padding-top: 2.4rem;
   padding-bottom: 2.4rem;
   position: fixed;
@@ -32,11 +30,21 @@ code {
 
 }
 
-#logo-box .logo {
-  color: #fff;
-  font-weight: 700;
-  font-size: 2.9rem;
+#logo-box{
+  text-align: center;
 }
+.btn-theme-position{
+  float: right;
+  margin-right: 5rem;
+}
+
+
+.btn-theme-light{
+background-color: black;
+  border-color: red;
+}
+
+
 
 /*.search{*/
 /*  padding-top: 10.5rem;*/
@@ -59,7 +67,7 @@ code {
   height: 16rem
 }
 
-.cardx{
+.countryCard{
   float: left;
   position: center;
 }

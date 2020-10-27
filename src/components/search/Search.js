@@ -1,24 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Filter from "./Filter";
-import SearchBox from "./SearchBox";
+
 import {Row, Col} from "reactstrap";
-import FilterClass from "./FilterClass";
+import SearchBox from "./SearchBox";
 
-class Search extends Component {
-    render() {
-        return (
 
-                <Row className="searchRow">
-                    <Col xs="9">
-                        <SearchBox/>
-                    </Col>
-                    <Col xs="3">
-                        <FilterClass/>
-                    </Col>
-                </Row>
+const Search = () => {
 
-        );
-    }
+    return (
+        <Row className="searchRow">
+            <Col xs="9">
+                <SearchBox/>
+            </Col>
+            <Col xs="3">
+                <Filter/>
+            </Col>
+        </Row>
+    );
 }
 
 export default Search;

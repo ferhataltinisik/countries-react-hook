@@ -1,82 +1,95 @@
-import React, {useState, useEffect, useContext, useReducer} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import initialState from "../../redux/reducers/initialState";
-import listCountryReducer from "../../redux/reducers/listCountryReducer";
+import React, {useContext, useEffect, useRef} from 'react';
+import {countryContext} from "../../context/countryContext";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import {Link} from "react-router-dom";
 
 
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 245,
-    },
-    media: {
-        height: 140,
-    },
-});
+const CountryList = () => {
+    const {countries, getCountries, filteredCountries} = useContext(countryContext);
 
-const CountryList = (props) => {
-
-    //const {countries, getCountries, test} = useContext();
-    const classes = useStyles();
-    //const [countries, setCountry] = useState([]);
-    // useEffect(() => {
-    //     getCountries();
-    // });
-/*
     useEffect(() => {
-        fetch("https://restcountries.eu/rest/v2/all")
-            .then(response => response.json())
-            .then(countries => setCountry(countries))
-    });
-
- */
+        getCountries();
+    }, []);
 
 
-    const [state, dispatch] = useReducer(listCountryReducer, initialState);
     return (
         <div>
-            Count: {state.currentCountry.countryName}
-            <h1>Context Data: {}</h1>
-        </div>
-    /*
-    <div className="col mt-3">
-
-        {countries.map(country => (
-            <div className="col-md-3 mt-5 mb-5 cardx">
-                <Card className={classes.root}>
-                    <CardActionArea>
-                        <CardMedia
-                            className={classes.media}
-                            image={country.flag}
-                            title="Countries in the World"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {country.name}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <h5>Population :{country.population} </h5>
-                                <h5>Region : {country.region}</h5>
-                                <h5>Capital : {country.capital}</h5>
-                                <h5>Currency :{country.currencies.name}</h5>
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                            Share
-                        </Button>
-                        <Button size="small" color="primary">
-                            Show More
-                        </Button>
-                    </CardActions>
-                </Card>
+            <div className="col mt-3">
+                {filteredCountries && filteredCountries.length!==0
+                    ? filteredCountries.map((country) => (
+                        <Link to={`/country-details/${country.name}`}>
+                            <div className="col-md-3 mt-5 mb-5 countryCard" key={country.alpha3Code}>
+                                <Card className="root">
+                                    <CardActionArea>
+                                        <CardMedia
+                                            className="media"
+                                            image={country.flag}
+                                            title="Countries in the World"
+                                        />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {country.name}
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Population :{country.population}
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Region : {country.region}
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Capital : {country.capital}>
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Currency :{country.currencies.name}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </div>
+                        </Link>
+                    ))
+                    : countries.map((country) => (
+                        <Link to={`/country-details/${country.name}`}>
+                            <div className="col-md-3 mt-5 mb-5 countryCard" key={country.alpha3Code}>
+                                <Card className="root">
+                                    <CardActionArea>
+                                        <CardMedia
+                                            className="media"
+                                            image={country.flag}
+                                            title="Countries in the World"
+                                        />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {country.name}
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Population :{country.population}
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Region : {country.region}
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Capital : {country.capital}>
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                Currency :{country.currencies.name}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </div>
+                        </Link>
+                    ))}
             </div>
-        ))}
-
-    </div>
-    */
-
+        </div>
     );
 }
 
 export default (CountryList);
+
+
+

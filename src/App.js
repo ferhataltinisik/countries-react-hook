@@ -1,25 +1,42 @@
-import React from 'react';
+import React, {useContext} from "react";
 
 import './App.css';
 import Navi from "./components/navi/Navi";
-import Details from "./components/countries/Details";
 import {Route, Switch} from "react-router-dom";
 import Dashboard from "./components/countries/Dashboard";
 import Container from "@material-ui/core/Container";
+import {ThemeProvider} from "styled-components";
+import { GlobalStyles } from "../src/components/globalStyles";
+import { lightTheme, darkTheme } from "../src/components/Themes"
+import {countryContext} from "./context/countryContext";
+import Details from "./components/countries/Details";
+
+
 
 
 function App() {
+
+    const {theme} = useContext(countryContext);
+
+
     return (
-        <div>
+        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+            <>
+                <GlobalStyles/>
+        <div className="App">
             <Navi/>
             <Container>
+
                 <Switch>
-                    <Route path="/" exact component={Dashboard}/>
+                    <Route path="/" exact>
+                        <Dashboard/>
+                    </Route>
                     <Route path="/country-details/:countryName" exact component={Details}/>
                 </Switch>
             </Container>
         </div>
-
+            </>
+        </ThemeProvider>
     );
 }
 
