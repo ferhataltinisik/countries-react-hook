@@ -6,7 +6,7 @@ import CountryList from "./CountryList";
 const Dashboard = () => {
 
     return (
-        <div className="dashboard">
+        <div>
             <Search/>
             <CountryList/>
         </div>

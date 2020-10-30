@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -16,19 +16,34 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const regions = ["None", "Africa", "Asia", "America", "Europe", "Australia"];
+const regions = ["All", "Africa", "Asia", "Americas", "Europe", "Oceania"];
 
 function Filter() {
     let formControl="formControl";
     const classes = useStyles(formControl);
-    const [region, setRegion] = useState(regions[0]);
-    const {getCountries} = useContext(countryContext)
-
+    const [searchKeyWord, setSearchKeyWord] = useState("");
+    const {theme, countries, filteredCountries, setFilteredCountries} = useContext(countryContext)
+    const [region, setRegion] = useState("all");
 
     const handleChange = (e) => {
-        getCountries(e.target.value);
-        setRegion(e.target.value);
+        e.preventDefault();
+        setSearchKeyWord(e.target.value);
     };
+
+    useEffect(() => {
+        if (filteredCountries.length!==0) {
+            setFilteredCountries(
+                filteredCountries.filter((country) =>
+                    country.region.toLowerCase().startsWith(searchKeyWord.toLowerCase())),
+            )
+        } else {
+            setFilteredCountries(
+                countries.filter((country) =>
+                    country.region.toLowerCase().startsWith(searchKeyWord.toLowerCase()))
+            )
+        };
+
+    }, [searchKeyWord, setFilteredCountries]);
 
 
 
@@ -36,11 +51,12 @@ function Filter() {
         <div>
 
             <FormControl variant="outlined" className={classes}>
-                <InputLabel id="demo-simple-select-outlined-label">Filter Continent</InputLabel>
+                <InputLabel id="demo-simple-select-outlined-label" className={theme==="dark" ? "filterBox" : null}>Filter by region</InputLabel>
                 <Select
                     labelId="demo-simple-select-outlined-label"
                     id="demo-simple-select-outlined"
-                    value={region}
+
+                    value={searchKeyWord}
                     onChange={handleChange}
                     label="Age"
                 >

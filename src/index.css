@@ -25,14 +25,9 @@ code {
   font-family: Montserrat;
   padding-top: 2.4rem;
   padding-bottom: 2.4rem;
-  position: fixed;
-  z-index: 500;
-
 }
 
-#logo-box{
-  text-align: center;
-}
+
 .btn-theme-position{
   float: right;
   margin-right: 5rem;
@@ -44,32 +39,14 @@ background-color: black;
   border-color: red;
 }
 
-
-
-/*.search{*/
-/*  padding-top: 10.5rem;*/
-/*  padding-bottom: 1rem;*/
-/*}*/
-
-.dashboard{
-  padding-top: 10.5rem;
-  padding-bottom: 1rem;
-}
-
-.searchRow{
-
-}
-
-.root{
-  max-width: 24rem
-}
 .media{
   height: 16rem
 }
 
-.countryCard{
+.comp-position{
   float: left;
   position: center;
+
 }
 
 .test{
@@ -91,11 +68,25 @@ background-color: black;
 .media-details{
   width: 400px;
   height: 250px;
+
 }
-
-
 
 .country-details-text{
   width: 70rem;
   height: 250px;
+
 }
+.card{
+  height: 300px;
+}
+
+.dark-card {
+  background: #212E37 !important;
+  color: #FAFAFA !important;
+
+}
+
+.filterBox{
+  color: white !important;;
+}
+

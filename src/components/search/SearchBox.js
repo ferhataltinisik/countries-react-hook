@@ -1,43 +1,46 @@
-import React, {useState, useContext, useEffect, useRef} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import {countryContext} from "../../context/countryContext";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
 
 
 const SearchBox = () => {
 
-    const {theme, countries, filteredCountries, setFilteredCountries, getCountries} = useContext(countryContext);
+    const {theme, countries, filteredCountries, setFilteredCountries} = useContext(countryContext);
     const [searchKeyWord, setSearchKeyWord] = useState("");
 
-    const inputChangeHandler = (e) => {
+    const handleChange = (e) => {
         e.preventDefault();
         setSearchKeyWord(e.target.value);
     }
 
-
     useEffect(() => {
-        if (searchKeyWord) {
+        if (filteredCountries.length!==0) {
+            setFilteredCountries(
+                filteredCountries.filter((country) =>
+                    country.name.toLowerCase().startsWith(searchKeyWord.toLowerCase())),
+            )
+        } else {
             setFilteredCountries(
                 countries.filter((country) =>
-                    country.name.toLowerCase().startsWith(searchKeyWord.toLowerCase())),
-            );
-        }
-    }, [searchKeyWord]);
+                    country.name.toLowerCase().startsWith(searchKeyWord.toLowerCase()))
+            )
+        };
 
+    }, [searchKeyWord, setFilteredCountries]);
 
-    console.log("Filtered Countries:" + JSON.stringify(filteredCountries))
 
     return (
         <div>
-            <div
-                className="justify-self-start pr-6/12"
-            >
-                <input
-                    className="justify-self-start shadow pr-16"
-                    onChange={inputChangeHandler}
-                    type="text"
-                    value={searchKeyWord}
-                    placeholder="Search"
-                />
-            </div>
+            <FormControl variant="outlined">
+                <InputLabel htmlFor="component-outlined" className={theme === "dark" ? "filterBox" : null}>Search
+                    country</InputLabel>
+                <OutlinedInput id="component-outlined"
+                               value={searchKeyWord}
+                               onChange={handleChange}
+                               label="Name"/>
+            </FormControl>
         </div>
     );
 }

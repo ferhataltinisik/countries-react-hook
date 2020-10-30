@@ -1,21 +1,19 @@
 import React from 'react';
 import Filter from "./Filter";
-
-import {Row, Col} from "reactstrap";
 import SearchBox from "./SearchBox";
 
 
 const Search = () => {
 
     return (
-        <Row className="searchRow">
-            <Col xs="9">
+        <div className="col">
+            <div className="col-md-9 mt-2 mb-3 float-left">
                 <SearchBox/>
-            </Col>
-            <Col xs="3">
+            </div>
+            <div className="col-md-3 mt-3 mb-2 float-left">
                 <Filter/>
-            </Col>
-        </Row>
+            </div>
+        </div>
     );
 }
 

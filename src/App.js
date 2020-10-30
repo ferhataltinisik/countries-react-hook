@@ -32,6 +32,7 @@ function App() {
                         <Dashboard/>
                     </Route>
                     <Route path="/country-details/:countryName" exact component={Details}/>
+                    <Route path="/country-code/:countryCode" exact component={Details}/>
                 </Switch>
             </Container>
         </div>

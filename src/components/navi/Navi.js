@@ -10,12 +10,12 @@ const Navi = () => {
         theme === 'light' ? setTheme('dark') : setTheme('light')
     }
     return (
-        <div className="text-lg-center">
-            <nav id="nav-bar" className="navbar">
-                <div id="logo-box">
-                  <h1>Search Countries</h1>
+        <div className="text-lg-center ">
+            <nav id="nav-bar" className="col navbar ">
+                <div className="col-md-9">
+                  <h1 >Search Countries</h1>
                 </div>
-                <div >
+                <div className="col-md-3 ">
                     <Button
                         onClick={themeToggler}
                             variant={theme === 'light' ? "outlined" : "contained"}

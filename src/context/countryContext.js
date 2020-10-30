@@ -8,13 +8,13 @@ const CountryProvider = ({children}) => {
     const [countries, setCountry] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([]);
     const [countryDetails, setCountryDetails] = useState([]);
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState("light");
     const [searchItem, setSearchItem] = useState('searchItem test');
 
 
     const getCountries = (region) => {
         let url = "https://restcountries.eu/rest/v2/"
-        if (!region) {
+        if (!region || region=="All") {
             url += "all/"
         } else {
             url += "region/" + region
@@ -25,12 +25,20 @@ const CountryProvider = ({children}) => {
     }
 
 
+    const getCountryByCode = (code) => {
+        let url = "https://restcountries.eu/rest/v2/alpha/"
+        url += code
+        fetch(url)
+            .then(response => response.json())
+            .then(country => setCountryDetails(country))
+    }
+
     const getCountryByName = (country) => {
         let url = "https://restcountries.eu/rest/v2/name/"
         url += country + "?fullText=true"
         fetch(url)
             .then(response => response.json())
-            .then(country => setFilteredCountries(country))
+            .then(country => setCountryDetails(country))
     }
 
 
@@ -48,7 +56,8 @@ const CountryProvider = ({children}) => {
                 searchItem,
                 setSearchItem,
                 filteredCountries,
-                setFilteredCountries
+                setFilteredCountries,
+                getCountryByCode
             }}>
             {children}
         </countryContext.Provider>

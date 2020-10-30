@@ -91,21 +91,21 @@ const Details = () => {
                                         </h5>
                                     </div>
                                 </div>
-                                {/*<div className="col float-left">*/}
-                                {/*    <div className=" col-md-12 mt-5 float-lg-left text-lg-left">*/}
-                                {/*        <h5 color="textPrimary">*/}
-                                {/*            <b>Border Countries</b>*/}
-                                {/*        </h5>*/}
-                                {/*        {country.borders.map(border => (*/}
-                                {/*            <Link to={`/country-code/${border}`}>*/}
-                                {/*                <Button  className="ml-4 float-left"*/}
-                                {/*                        variant="contained" color="primary">*/}
-                                {/*                    {border}*/}
-                                {/*                </Button>*/}
-                                {/*            </Link>*/}
-                                {/*        ))}*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
+                                <div className="col float-left">
+                                    <div className=" col-md-12 mt-5 float-lg-left text-lg-left">
+                                        <h5 color="textPrimary">
+                                            <b>Border Countries</b>
+                                        </h5>
+                                        {country.borders.map(border => (
+                                            <Link to={`/country-code/${border}`}>
+                                                <Button  className="ml-4 float-left"
+                                                        variant="contained" color="primary">
+                                                    {border}
+                                                </Button>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
                             </CardContent>
                         </Card>
                     </div>
