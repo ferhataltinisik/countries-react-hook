@@ -9,18 +9,14 @@ import {Link, useParams} from "react-router-dom";
 import {countryContext} from "../../context/countryContext";
 
 
-const Details = () => {
-    const {theme, countryDetails, getCountryByName, getCountryByCode} = useContext(countryContext)
+const DetailsCode = () => {
+    const {theme, countryDetails, getCountryByName,getCountryByCode} = useContext(countryContext)
     const {countryName, countryCode} = useParams();
 
 
     useEffect(() => {
         getCountryByCode(countryCode);
-
     }, []);
-
-
-
 
     return (
         <div className="country-details">
@@ -97,9 +93,9 @@ const Details = () => {
                                             <b>Border Countries</b>
                                         </h5>
                                         {country.borders.map(border => (
-                                            <Link to={`/country-code/${border}`}>
+                                            <Link to={`/country-details-code/${border}`}>
                                                 <Button  className="ml-4 float-left"
-                                                        variant="contained" color="primary">
+                                                         variant="contained" color="primary">
                                                     {border}
                                                 </Button>
                                             </Link>
@@ -115,5 +111,5 @@ const Details = () => {
     );
 }
 
-export default Details;
+export default DetailsCode;
 
