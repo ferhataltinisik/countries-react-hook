@@ -60,7 +60,6 @@ const Details = () => {
                                                     <div>
                                                         <p><b>Language: </b> {language.name}</p>
                                                     </div>
-
                                                 ))}
                                             </h5>
                                             <h5 color="textPrimary">
