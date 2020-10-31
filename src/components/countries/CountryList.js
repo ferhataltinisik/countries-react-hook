@@ -83,16 +83,6 @@ const CountryList = () => {
                                             <Typography variant="h6">
                                                 Capital : {country.capital}
                                             </Typography>
-                                            <Typography variant="h6">
-                                                {country.borders.map(border => (
-                                                    <Link to={`/country-code/${border}`}>
-                                                        <Button  className="ml-4 float-left"
-                                                                 variant="contained" color="primary">
-                                                            {border}
-                                                        </Button>
-                                                    </Link>
-                                                ))}
-                                            </Typography>
                                         </CardContent>
                                     </CardActionArea>
                                 </Card>
