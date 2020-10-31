@@ -31,17 +31,10 @@ function Filter() {
     };
 
     useEffect(() => {
-        if (filteredCountries.length!==0) {
-            setFilteredCountries(
-                filteredCountries.filter((country) =>
-                    country.region.toLowerCase().startsWith(searchKeyWord.toLowerCase())),
-            )
-        } else {
-            setFilteredCountries(
-                countries.filter((country) =>
-                    country.region.toLowerCase().startsWith(searchKeyWord.toLowerCase()))
-            )
-        };
+        setFilteredCountries(
+            countries.filter((country) =>
+                country.region.toLowerCase().startsWith(searchKeyWord.toLowerCase()))
+        )
 
     }, [searchKeyWord, setFilteredCountries]);
 

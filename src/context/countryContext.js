@@ -9,7 +9,7 @@ const CountryProvider = ({children}) => {
     const [filteredCountries, setFilteredCountries] = useState([]);
     const [countryDetails, setCountryDetails] = useState([]);
     const [theme, setTheme] = useState("light");
-    const [searchItem, setSearchItem] = useState('searchItem test');
+    const [searchItem, setSearchItem] = useState('');
 
 
     const getCountries = (region) => {
@@ -25,9 +25,9 @@ const CountryProvider = ({children}) => {
     }
 
 
-    const getCountryByCode = (code) => {
-        let url = "https://restcountries.eu/rest/v2/alpha/"
-        url += code
+    const getCountryByCode = (countryCode) => {
+        let url = "https://restcountries.eu/rest/v2/alpha?codes="
+        url +=countryCode
         fetch(url)
             .then(response => response.json())
             .then(country => setCountryDetails(country))
@@ -57,7 +57,8 @@ const CountryProvider = ({children}) => {
                 setSearchItem,
                 filteredCountries,
                 setFilteredCountries,
-                getCountryByCode
+                getCountryByCode,
+
             }}>
             {children}
         </countryContext.Provider>

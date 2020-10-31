@@ -11,20 +11,19 @@ const SearchBox = () => {
     const [searchKeyWord, setSearchKeyWord] = useState("");
 
     const handleChange = (e) => {
-        e.preventDefault();
         setSearchKeyWord(e.target.value);
     }
 
     useEffect(() => {
-        if (filteredCountries.length!==0) {
-            setFilteredCountries(
-                filteredCountries.filter((country) =>
-                    country.name.toLowerCase().startsWith(searchKeyWord.toLowerCase())),
-            )
-        } else {
+        if (filteredCountries.length==0) {
             setFilteredCountries(
                 countries.filter((country) =>
                     country.name.toLowerCase().startsWith(searchKeyWord.toLowerCase()))
+            )
+        } else {
+            setFilteredCountries(
+                filteredCountries.filter((country) =>
+                    country.name.toLowerCase().startsWith(searchKeyWord.toLowerCase())),
             )
         };
 

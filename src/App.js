@@ -10,6 +10,7 @@ import { GlobalStyles } from "../src/components/globalStyles";
 import { lightTheme, darkTheme } from "../src/components/Themes"
 import {countryContext} from "./context/countryContext";
 import Details from "./components/countries/Details";
+import DetailsCode from "./components/countries/DetailsCode";
 
 
 
@@ -32,7 +33,7 @@ function App() {
                         <Dashboard/>
                     </Route>
                     <Route path="/country-details/:countryName" exact component={Details}/>
-                    <Route path="/country-code/:countryCode" exact component={Details}/>
+                    <Route path="/country-details-code/:countryCode" exact component={DetailsCode}/>
                 </Switch>
             </Container>
         </div>
