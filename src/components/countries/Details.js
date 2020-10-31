@@ -35,8 +35,8 @@ const Details = () => {
             <Container className="mt-5">
                 {countryDetails.map(country => (
                     <div>
-                        <div className="float-left">
-                            <Card className="float-left">
+                        <div className="float-left mr-3 mb-4">
+                            <Card >
                                 <CardMedia
                                     className="media-details "
                                     image={country.flag}
@@ -53,7 +53,7 @@ const Details = () => {
                                     <div className="col">
                                         <div className="col-md-6 float-lg-left text-lg-left">
                                             <h5 color="textPrimary">
-                                                <p><b>Capital : </b> {country.capital}</p>
+                                                <p><b>Capital:</b> {country.capital}</p>
                                             </h5>
                                             <h5 color="textPrimary">
                                                 {country.languages.map(language => (

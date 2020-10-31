@@ -49,7 +49,7 @@ const DetailsCode = () => {
                                     <div className="col">
                                         <div className="col-md-6 float-lg-left text-lg-left">
                                             <h5 color="textPrimary">
-                                                <p><b>Capital : </b> {country.capital}</p>
+                                                <p><b>Capital:</b> {country.capital}</p>
                                             </h5>
                                             <h5 color="textPrimary">
                                                 {country.languages.map(language => (
